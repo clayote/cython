@@ -714,8 +714,9 @@ class PyDictObjectPtr(PyObjectPtr):
     def _get_entries(self, keys):
         dk_nentries = int(keys['dk_nentries'])
         if dk_nentries == 0:
-            return keys['dk_indices'].address, 0
-        dk_size = int(keys['dk_size'])
+            dk_size = 0
+        else:
+            dk_size = int(keys['dk_size'])
         try:
             # <= Python 3.5
             return keys['dk_entries'], dk_size
